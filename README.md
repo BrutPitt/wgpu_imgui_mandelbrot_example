@@ -3,6 +3,20 @@
 This is a very short example that use **WebGPU** as graphics backend and (also) **ImGui** as User Interface.
 It was written in C++ and can be compiled in native mode (for a standalone desktop application) or with EMSCRIPTEN to perform it via the web browser
 
+<table style="text-align: center; float:center;  width:100%; table-layout: fixed; ">
+<tr>
+<td align="center">
+<img style="height: 400px; width=auto;" src="https://brutpitt.github.io/myRepos/wgpu_examples/screenshots/Screenshot_20250313_052144.png"/></a>
+</td>
+
+
+<td align="center">
+<img style="height: 400px; width=auto;" src="https://brutpitt.github.io/myRepos/wgpu_examples/screenshots/Screenshot_20250313_052339.png"/></a>
+</td>
+</tr> 
+</table>
+
+
 Live online WebGPU Mandelbrot example:
 - [wgpu - Mandelbror - GLFW example](https://brutpitt.github.io/myRepos/wgpu_examples/mandel_GLFW/wgpu_mandelbrot.html) 
 - [wgpu - Mandelbror - SDL2 example](https://brutpitt.github.io/myRepos/wgpu_examples/mandel_SDL2/wgpu_mandelbrot.html)
