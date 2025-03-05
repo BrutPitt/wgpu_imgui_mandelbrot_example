@@ -34,6 +34,10 @@ Anyway feel free to open a issue
 
 ## How to Build
 
+Clone using `git clone --recursive https://github.com/BrutPitt/wgpu_imgui_mandelbrot_example`
+
+It is necessary to have installed **SDL2** and / or **GLFW** (development package)
+
 ### Native - Desktop application
 
 - clone Google DAWN (WGPU SDK): `git clone https://github.com/google/dawn dawn`
@@ -62,6 +66,8 @@ Indeed EMSCRIPTEN still uses some old functions (already changed in DAWN/WGPU na
 "default" (not offcial) WGPU **ImGui** examples, currently in PullRequest, and available here: 
 - [imgui_example_glfw_wgpu](https://github.com/BrutPitt/imgui/tree/master/examples/example_glfw_wgpu) ==> [Live demo](https://brutpitt.github.io/myRepos/imgui/example_glfw_wgpu/index.html)
 - [imgui_example_sdl2_wgpu](https://github.com/BrutPitt/imgui/tree/master/examples/example_sdl2_wgpu) ==> [Live demo](https://brutpitt.github.io/myRepos/imgui/example_sdl2_wgpu/index.html)
+
+
 **they are not yet available in official ImGui branch*
 
 
