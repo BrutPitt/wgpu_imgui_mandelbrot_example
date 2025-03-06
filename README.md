@@ -20,8 +20,8 @@ It was written in C++ and can be compiled in native mode (for a standalone deskt
 Live online WebGPU Mandelbrot example:
 - [wgpu - Mandelbror - GLFW example](https://brutpitt.github.io/myRepos/wgpu_examples/mandel_GLFW/wgpu_mandelbrot.html) 
 - [wgpu - Mandelbror - SDL2 example](https://brutpitt.github.io/myRepos/wgpu_examples/mandel_SDL2/wgpu_mandelbrot.html)
-- [wgpu - imgui - Mandelbror - GLFW example](https://brutpitt.github.io/myRepos/wgpu_examples/mandel_imgui_GLFW/wgpu_mandelbrot.html) 
-- [wgpu - imgui - Mandelbror - SDL2 example](https://brutpitt.github.io/myRepos/wgpu_examples/mandel_imgui_SDL2/wgpu_mandelbrot.html)
+- [wgpu+imgui - Mandelbror - GLFW example](https://brutpitt.github.io/myRepos/wgpu_examples/mandel_imgui_GLFW/wgpu_mandelbrot.html) 
+- [wgpu+imgui - Mandelbror - SDL2 example](https://brutpitt.github.io/myRepos/wgpu_examples/mandel_imgui_SDL2/wgpu_mandelbrot.html)
 
 Obviously is necessary to use a brows with WebGPU capability: e.g. Chrome-Canary, FireFox Nightly, Safari Technology Preview ...
 
@@ -41,18 +41,21 @@ It is necessary to have installed **SDL2** and / or **GLFW** (development packag
 ### Native - Desktop application
 
 - clone Google DAWN (WGPU SDK): `git clone https://github.com/google/dawn dawn`
+- Install Ninja build system 
 - from any folder example type: `cmake -B build -DIMGUI_DAWN_DIR=path/where/cloned/dawn` (absolute or relative path) 
 - then `cmake --build build`
 
 ### Emscripten - Web Browser application (WASM)
 
 - Install Emscripten SDK following the instructions: https://emscripten.org/docs/getting_started/downloads.html
-- Install Ninja build system
+- Install Ninja build system 
 - `emcmake cmake -G Ninja -B build`
 - `cmake --build build`
-- emrun build/wgpu_mandelbrot.html
- or
-- python -m http.server ... then open WGPU browser with url: http://localhost:8000/wgpu_mandelbrot.html
+- `emrun build/wgpu_mandelbrot.html`
+
+or
+
+- `python -m http.server` ... then open WGPU browser with url: http://localhost:8000/wgpu_mandelbrot.html
 
 ### *notes*
 
