@@ -42,7 +42,7 @@ It's necessary to have installed **SDL2** and / or **GLFW** (development package
 
 ### Native - Desktop application
 
-- clone Google DAWN (WGPU SDK): `git clone https://github.com/google/dawn dawn`
+- clone Google DAWN (WGPU SDK): `git clone https://dawn.googlesource.com/dawn`
 - Install Ninja build system (DAWN requires)
 - from any folder example type: `cmake -B build -DIMGUI_DAWN_DIR=path/where/cloned/dawn` (absolute or relative path) 
 - then `cmake --build build`
