@@ -587,7 +587,7 @@ int main(int, char**)
     while (!glfwWindowShouldClose(fwWindow)) {
         if (glfwGetWindowAttrib(fwWindow, GLFW_ICONIFIED) != 0) {
             ImGui_ImplGlfw_Sleep(10);
-            return;
+            return -3;
         }
         mainLoop();
         surface.Present();
