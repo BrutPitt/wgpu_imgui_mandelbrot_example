@@ -72,7 +72,7 @@ else()
 endif()
 
 add_executable(${APP_NAME}
-  main_js_inline.cpp
+  main.cpp
   ../sdl2wgpu.cpp
 )
 
@@ -100,3 +100,5 @@ if(EMSCRIPTEN)
     "-sUSE_SDL=2"
   )
 endif()
+
+#file(WRITE ${CMAKE_SOURCE_DIR}/.idea/.name ${PROJECT_NAME}) # used to rename a Project in clion (run once)

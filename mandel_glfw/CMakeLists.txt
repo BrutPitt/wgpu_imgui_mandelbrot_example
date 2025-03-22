@@ -13,7 +13,7 @@
 #  4. python -m http.server ... then open WGPU browser with url: http://localhost:8000/wgpu_mandelbrot.html
 
 cmake_minimum_required(VERSION 3.16) # DAWN required
-project(wgpu_mandelbrot_example)
+project(wgpu_mandelbrot_GLFW)
 
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Debug CACHE STRING "" FORCE)
@@ -73,7 +73,7 @@ else()
 endif()
 
 add_executable(wgpu_mandelbrot
-  main_js_inline.cpp
+  main.cpp
 )
 
 target_link_libraries(wgpu_mandelbrot LINK_PUBLIC ${LIBRARIES})
@@ -97,9 +97,4 @@ if(EMSCRIPTEN)
   )
 endif()
 
-#These examples use Google DAWN (as WGPU SDK), currently a step forward in native development
-#Indeed EMSCRIPTEN still uses some old functions (already changed in DAWN/WGPU native) and Google DAWN maintain a private fork of the Emscripten WebGPU bindings (**emdawnwebgpu**) to speedup the WebGPU evolution ([emdawnwebgpu is available in DAWN repo](https://dawn.googlesource.com/dawn/+/refs/heads/main/src/emdawnwebgpu/))
-#These examples (for now) use the "original" EMSCRIPTEN, for this motive there is so many differences between native and web code
-#
-#
-#
+#file(WRITE ${CMAKE_SOURCE_DIR}/.idea/.name ${PROJECT_NAME}) # used to rename a Project in clion (run once)
