@@ -21,7 +21,7 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Debug CACHE STRING "" FORCE)
 endif()
 
-set(CMAKE_CXX_STANDARD 17) # Dawn requires C++17
+set(CMAKE_CXX_STANDARD 20) # Dawn requires C++17
 
 # Dear ImGui
 set(IMGUI_DIR ../imgui)
@@ -78,7 +78,7 @@ else()
 endif()
 
 add_executable(${APP_NAME}
-  main_js_inline.cpp
+  main.cpp
   # backend files
   ${IMGUI_DIR}/backends/imgui_impl_glfw.cpp
   ${IMGUI_DIR}/backends/imgui_impl_wgpu.cpp
@@ -90,6 +90,7 @@ add_executable(${APP_NAME}
 )
 
 target_include_directories(${APP_NAME} PUBLIC
+  ${CMAKE_SOURCE_DIR}/..
   ${IMGUI_DIR}
   ${IMGUI_DIR}/backends
 )

@@ -21,7 +21,7 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Debug CACHE STRING "" FORCE)
 endif()
 
-set(CMAKE_CXX_STANDARD 17) # Dawn requires C++17
+set(CMAKE_CXX_STANDARD 20)
 
 # Dear ImGui
 set(IMGUI_DIR ../imgui)
@@ -29,7 +29,6 @@ set(IMGUI_DIR ../imgui)
 # Libraries
 if(EMSCRIPTEN)
   set(ENABLE_EMSCRIPTEN ON)
-  set(LIBRARIES glfw)
   add_compile_options(-sDISABLE_EXCEPTION_CATCHING=1)
 else()
   # Dawn wgpu desktop
@@ -71,11 +70,11 @@ else()
 
   find_package(SDL2 REQUIRED)
 
-  set(LIBRARIES webgpu_dawn webgpu_cpp webgpu_glfw glfw ${SDL2_LIBRARIES})
+  set(LIBRARIES webgpu_dawn webgpu_cpp ${SDL2_LIBRARIES})
 endif()
 
 add_executable(${APP_NAME}
-  main_oldStyle.cpp
+  main.cpp
   ../sdl2wgpu.cpp
   # backend files
   ${IMGUI_DIR}/backends/imgui_impl_sdl2.cpp
