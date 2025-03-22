@@ -53,7 +53,6 @@ wgpu::SurfaceConfiguration  surfaceConfig;
 // Pipeline related objs
 wgpu::RenderPipeline pipeline;
 wgpu::Buffer ubo;
-wgpu::PipelineLayout pipelineLayout;
 wgpu::BindGroupLayout bindGroupLayout;
 
 // Forward declarations
@@ -307,7 +306,7 @@ void initRenderPipeline()
     wgpu::PipelineLayoutDescriptor layoutDesc;
     layoutDesc.bindGroupLayoutCount = 1;
     layoutDesc.bindGroupLayouts = &bindGroupLayout;
-    pipelineLayout = device.CreatePipelineLayout(&layoutDesc);
+    wgpu::PipelineLayout pipelineLayout = device.CreatePipelineLayout(&layoutDesc);
     descPipeline.layout = pipelineLayout;
 
     // Create Render Pipeline
@@ -467,7 +466,6 @@ int main(int, char**)
     SDL_SetHint(SDL_HINT_VIDEODRIVER, "x11");  // or (outside code) export SDL_VIDEODRIVER=wayland environment variable
     #endif                                     // or    "      "    export SDL_VIDEODRIVER=$XDG_SESSION_TYPE to get the current session type
 #endif
-
     // Init SDL
     SDL_Init(SDL_INIT_VIDEO);
     fwWindow = SDL_CreateWindow(appTitle, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, initialWindowWidth, initialWindowHeight, SDL_WINDOW_RESIZABLE);

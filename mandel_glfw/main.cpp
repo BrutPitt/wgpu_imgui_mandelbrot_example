@@ -53,7 +53,6 @@ wgpu::SurfaceConfiguration  surfaceConfig;
 // Pipeline related objs
 wgpu::RenderPipeline pipeline;
 wgpu::Buffer ubo;
-wgpu::PipelineLayout pipelineLayout;
 wgpu::BindGroupLayout bindGroupLayout;
 
 // Forward declarations
@@ -308,7 +307,7 @@ void initRenderPipeline()
     wgpu::PipelineLayoutDescriptor layoutDesc;
     layoutDesc.bindGroupLayoutCount = 1;
     layoutDesc.bindGroupLayouts = &bindGroupLayout;
-    pipelineLayout = device.CreatePipelineLayout(&layoutDesc);
+    wgpu::PipelineLayout pipelineLayout = device.CreatePipelineLayout(&layoutDesc);
     descPipeline.layout = pipelineLayout;
 
     // Create Render Pipeline
