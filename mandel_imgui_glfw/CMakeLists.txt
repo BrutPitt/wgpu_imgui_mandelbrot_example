@@ -121,9 +121,3 @@ if(EMSCRIPTEN)
   )
 endif()
 
-#These examples use Google DAWN (as WGPU SDK), currently a step forward in native development
-#Indeed EMSCRIPTEN still uses some old functions (already changed in DAWN/WGPU native) and Google DAWN maintain a private fork of the Emscripten WebGPU bindings (**emdawnwebgpu**) to speedup the WebGPU evolution ([emdawnwebgpu is available in DAWN repo](https://dawn.googlesource.com/dawn/+/refs/heads/main/src/emdawnwebgpu/))
-#These examples (for now) use the "original" EMSCRIPTEN, for this motive there is so many differences between native and web code
-#
-#
-#

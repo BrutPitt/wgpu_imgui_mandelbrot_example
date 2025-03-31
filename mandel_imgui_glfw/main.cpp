@@ -34,10 +34,11 @@ static const uint32_t initialWindowHeight {768};
 static const char *appTitle {"wgpu - imgui - Mandelbrot - GLFW example"};
 
 // Mandelbrot data
+// I use the struct data position to simulate vec2f element used in the shader... and not to include an external library (e.g. GLM)
 struct alignas(16) shaderData_ {
-    float mScaleX = 1.5, mScaleY = 1.5;
-    float mTranspX = -.75, mTranspY = 0.0;
-    float wSizeX = initialWindowWidth, wSizeY = initialWindowHeight;
+    float mScaleX = 1.5, mScaleY = 1.5;                               // pair used as vec2f in the shader
+    float mTranspX = -.75, mTranspY = 0.0;                            // pair used as vec2f in the shader
+    float wSizeX = initialWindowWidth, wSizeY = initialWindowHeight;  // pair used as vec2f in the shader
     int32_t iterations = 256, nColors = 256;
     float shift = 0.0;
 } shaderData;
@@ -119,7 +120,7 @@ static void wgpu_device_lost_callback(const wgpu::Device&, wgpu::DeviceLostReaso
     switch (reason) {
         case wgpu::DeviceLostReason::Unknown:         reasonName = "Unknown";         break;
         case wgpu::DeviceLostReason::Destroyed:       reasonName = "Destroyed";       break;
-        case wgpu::DeviceLostReason::InstanceDropped: reasonName = "InstanceDropped"; break;
+        case wgpu::DeviceLostReason::CallbackCancelled: reasonName = "InstanceDropped"; break;
         case wgpu::DeviceLostReason::FailedCreation:  reasonName = "FailedCreation";  break;
         default:                                      reasonName = "UNREACHABLE";     break;
     }
