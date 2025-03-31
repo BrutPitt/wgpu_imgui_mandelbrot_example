@@ -28,8 +28,6 @@
 #include <GLFW/glfw3.h>
 #endif
 
-#include "sleepTimer.h"
-
 // Initial App state
 static const uint32_t initialWindowWidth {768};
 static const uint32_t initialWindowHeight {768};
@@ -356,7 +354,13 @@ WGPUTexture checkTextureStatus()
         case WGPUSurfaceGetCurrentTextureStatus_Timeout:
         case WGPUSurfaceGetCurrentTextureStatus_Outdated:
         case WGPUSurfaceGetCurrentTextureStatus_Lost:
+        // if the status is NOT Optimal let's try to reconfigure the surface
         {
+            if (surfaceTexture.texture)
+                wgpuTextureRelease(surfaceTexture.texture);
+#ifndef NDEBUG
+            printf("Surface texture reconfigure: status %d\n", surfaceTexture.status);
+#endif
             int width, height;
             glfwGetFramebufferSize(fwWindow, &width, &height);
             if ( width > 0 && height > 0 )
@@ -369,8 +373,46 @@ WGPUTexture checkTextureStatus()
             return nullptr;
         }
         default:
-            // Handle the error.
+            assert(!"Unexpected Surface Texture status error\n");
             return nullptr;
+    }
+    return surfaceTexture.texture;
+}
+
+
+wgpu::Texture checkTextureStatusA()
+{
+
+    wgpu::SurfaceTexture surfaceTexture;
+    surface.GetCurrentTexture(&surfaceTexture);
+
+    switch ( surfaceTexture.status )
+    {
+    case wgpu::SurfaceGetCurrentTextureStatus::SuccessOptimal:
+        break;
+    case wgpu::SurfaceGetCurrentTextureStatus::SuccessSuboptimal:
+    case wgpu::SurfaceGetCurrentTextureStatus::Timeout:
+    case wgpu::SurfaceGetCurrentTextureStatus::Outdated:
+    case wgpu::SurfaceGetCurrentTextureStatus::Lost:
+    case wgpu::SurfaceGetCurrentTextureStatus::Error:
+        // if the status is NOT Optimal let's try to reconfigure the surface
+#ifndef NDEBUG
+        printf("Surface texture warning: status %d ... reconfigure it\n", surfaceTexture.status);
+#endif
+        int width, height;
+        glfwGetFramebufferSize(fwWindow, &width, &height);
+        if ( width > 0 && height > 0 )    {
+            surfaceConfig.width  = width;
+            surfaceConfig.height = height;
+
+            surface.Configure(&surfaceConfig);
+
+            return nullptr;
+        }
+        break;
+    default:
+        // Handle the error.
+        return nullptr;
     }
     return surfaceTexture.texture;
 }
