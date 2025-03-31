@@ -379,44 +379,6 @@ WGPUTexture checkTextureStatus()
     return surfaceTexture.texture;
 }
 
-
-wgpu::Texture checkTextureStatusA()
-{
-
-    wgpu::SurfaceTexture surfaceTexture;
-    surface.GetCurrentTexture(&surfaceTexture);
-
-    switch ( surfaceTexture.status )
-    {
-    case wgpu::SurfaceGetCurrentTextureStatus::SuccessOptimal:
-        break;
-    case wgpu::SurfaceGetCurrentTextureStatus::SuccessSuboptimal:
-    case wgpu::SurfaceGetCurrentTextureStatus::Timeout:
-    case wgpu::SurfaceGetCurrentTextureStatus::Outdated:
-    case wgpu::SurfaceGetCurrentTextureStatus::Lost:
-    case wgpu::SurfaceGetCurrentTextureStatus::Error:
-        // if the status is NOT Optimal let's try to reconfigure the surface
-#ifndef NDEBUG
-        printf("Surface texture warning: status %d ... reconfigure it\n", surfaceTexture.status);
-#endif
-        int width, height;
-        glfwGetFramebufferSize(fwWindow, &width, &height);
-        if ( width > 0 && height > 0 )    {
-            surfaceConfig.width  = width;
-            surfaceConfig.height = height;
-
-            surface.Configure(&surfaceConfig);
-
-            return nullptr;
-        }
-        break;
-    default:
-        // Handle the error.
-        return nullptr;
-    }
-    return surfaceTexture.texture;
-}
-
 void renderImGui()
 {
     // Start the Dear ImGui frame
